@@ -1,0 +1,17 @@
+# Paso 1: Utiliza una imagen base de Python
+FROM python:3.8-slim
+
+# Paso 2: Establece el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Paso 3: Copia los archivos del proyecto en el contenedor
+COPY . /app
+
+# Paso 4: Instala las dependencias desde el archivo requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Paso 5: Expone el puerto en el que correrá la aplicación
+EXPOSE 8000
+
+# Paso 6: Define el comando que se ejecutará al iniciar el contenedor
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
